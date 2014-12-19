@@ -1,0 +1,65 @@
+$borderStyle: 1px solid black;
+$defaultCellHeight: 30px;
+
+.i-textbox
+{
+	width: 100%;
+	height: 100%;
+	color: black;
+}
+.i-table
+{
+	display: table;
+	border-collapse: collapse;
+	margin: 3px;
+	div
+	{
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+	.column-area
+	{
+		border-left: $borderStyle;
+		border-top: $borderStyle;
+		overflow: hidden;
+		font-size: 0px;
+		div
+		{
+			overflow: hidden;
+		}
+	}
+	.column-section
+	{
+		font-size: 0px;
+		display: inline-block;		
+	}
+	.column-children
+	{
+
+	}
+	.header
+	{
+		height: $defaultCellHeight;
+		font-size: 16px;
+		text-align: center;
+		display: block;
+		width: 100%;
+		color: blue;
+		padding: 3px;
+		border-right: 1px solid black;
+		/*border-top: 1px solid black;*/
+		border-bottom: 1px solid black;
+		overflow: hidden;
+		
+		.cell 
+		{
+			display: table-cell;
+		}
+	}
+
+	.grid-row
+	{
+		display: table-row;
+	}
+}

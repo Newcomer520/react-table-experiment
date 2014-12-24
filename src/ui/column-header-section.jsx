@@ -12,8 +12,12 @@ var ColumnHeaderSection = React.createClass({
 			defaultCellHeight: 30
 		};
 		var cols = _.clone(this.props.columns);
-		cols = _.isArray(this.props.columns) ? 
+		cols = _.isArray(cols) ? 
 			{ columns: cols } : cols;
+		//reset column.
+		cols.columns.forEach(function(col) {
+			col._localNumberOfLayer = undefined;
+		});
 		crColumns(cols);
 		if (_.isUndefined(cols.name)) {
 			cols._localNumberOfLayer--;
@@ -24,12 +28,9 @@ var ColumnHeaderSection = React.createClass({
 	},	
 	componentWillMount: function() {
 		
-		
 	},
 	render: function() {
 		var cols = this.computedColumns();
-		console.log('cols: ', cols);
-		console.log('setting', cols.setting);
 		return (
 			<div className="column-area">
 				<ColumnHeader column={cols} setting={cols.setting}  />

@@ -3,9 +3,8 @@ var React = require('react');
 var Table = require('./ui/table.jsx');
 var TextBox = require('./ui/textbox.jsx');
 
-
 var TableDispatcher = require('./dispatcher/TableDispatcher.js');
-var copyDispatcher = require('./dispatcher/copy-dispatcher.js');
+
 
 
 var tbStyle = {
@@ -28,16 +27,25 @@ var columns = [
 }
 ,	columns5 = [
 	{ name: 'group 01'}, columns3]
+,	options = {
+	method: 'custom',
+	dataProvider: function() {
 
+	}
+}
 
 /*React.render(
 	<Table columns={columns} />,
 	document.getElementById('tb01')
 );*/
 React.render(
-	<Table columns={columns5} />,
+	<Table id="table01" columns={columns5} />,
 	document.getElementById('tb02')
 );
+/*React.render(
+	<Table columns={columns3} />,
+	document.getElementById('tb01')
+)*/
 /*
 React.render(
 	<div style={tbStyle}><TextBox /></div>,

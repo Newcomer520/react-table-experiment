@@ -25,7 +25,7 @@ var ColumnHeader = React.createClass({
 			,	lL = this.props.column._localNumberOfLayer
 			,	h = (this.props.setting.defaultCellHeight * (mL - idx)  / lL) + 'px'
 			s = _.extend(s, {height: h});
-			console.log (mL, idx, lL)
+
 			header = (
 				<div className="header" style={s}>
 					<div className="cell">

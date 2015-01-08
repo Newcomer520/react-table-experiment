@@ -11,6 +11,13 @@ var ColumnHeader = React.createClass({
 	getInitialState: function() {
 		return null;
 	},
+	componentDidUpdate: function() {
+		var s = {width: this.getDOMNode().offsetWidth  + 'px'};		
+		this.props.column.behavior = _.extend({}, this.props.column.style, s);
+	},
+	componentDidMount: function() {
+		this.componentDidUpdate();
+	},
 	render: function() {
 		/**
 		maybe there will be a recursive columnss.
@@ -24,7 +31,10 @@ var ColumnHeader = React.createClass({
 			,	idx = this.props.column._idxOfLayer
 			,	lL = this.props.column._localNumberOfLayer
 			,	h = (this.props.setting.defaultCellHeight * (mL - idx)  / lL) + 'px'
-			s = _.extend(s, {height: h});
+			s = _.extend(s, {height: h});			
+			//s = (this.props.column.behavior) ? _.extend(s, this.props.column.behavior) : s;
+
+			this.props.column.style = s;
 
 			header = (
 				<div className="header" style={s}>
@@ -45,7 +55,6 @@ var ColumnHeader = React.createClass({
 			<div className="column-children">
 				{children.map(function(col) {
 					var s = _.extend({}, col.style);
-
 					if (_.isUndefined(col.key)) {
 						col.key = 'col-header' + Math.random();
 					}

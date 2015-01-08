@@ -17,5 +17,8 @@ module.exports = {
 	},
 	externals: {
 		jquery: "jQuery"
+	},
+	debug: {
+	    devtool: "#inline-source-map"
 	}
 }

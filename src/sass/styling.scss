@@ -1,4 +1,4 @@
-$borderStyle: 1px solid black;
+$borderStyle: 1px solid #8e8e8e;
 $defaultCellHeight: 30px;
 
 .i-textbox
@@ -9,9 +9,12 @@ $defaultCellHeight: 30px;
 }
 .i-table
 {
-	display: table;
+	/*display: table;*/
+	position: relative;
 	border-collapse: collapse;
-	margin: 3px;
+	white-space: nowrap;
+	height:100%;	
+	/*border: $borderStyle;*/
 	div
 	{
 		-webkit-box-sizing: border-box;
@@ -20,6 +23,8 @@ $defaultCellHeight: 30px;
 	}
 	.column-area
 	{
+		display: table;
+		position: relative;
 		border-left: $borderStyle;
 		border-top: $borderStyle;
 		overflow: hidden;
@@ -32,7 +37,7 @@ $defaultCellHeight: 30px;
 	.column-section
 	{
 		font-size: 0px;
-		display: inline-block;		
+		display: inline-block;	
 	}
 	.column-children
 	{
@@ -47,19 +52,23 @@ $defaultCellHeight: 30px;
 		width: 100%;
 		color: blue;
 		padding: 3px;
-		border-right: 1px solid black;
-		/*border-top: 1px solid black;*/
-		border-bottom: 1px solid black;
+		border-right: $borderStyle;
+		border-bottom: $borderStyle;
 		overflow: hidden;
 		
 		.cell 
 		{
-			display: table-cell;
+			
 		}
 	}
-
-	.grid-row
+	.table-row
 	{
 		display: table-row;
+	}
+	.pending
+	{
+		position: absolute;
+		top: 50%;
+		left: 50%;
 	}
 }

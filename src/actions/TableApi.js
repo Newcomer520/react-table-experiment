@@ -3,17 +3,17 @@ var TableConstants = require('../constants/TableConstants');
 
 var $ = require('jquery');
 var _ = require('underscore');
-
+var BaseAction = require('./baseAction');
 
 var TableApi = function(tableId) {	
 	var _tableId = tableId;
-	function handleViewAction(action) {
-		action.tableId = _tableId;
-		TableDispatcher.handleViewAction(action);
-	}
+	var tableApi = this;
+	this.tableId = tableId;	
+	this.baseAction = new BaseAction(tableId);
+	
 	var api = {
 		getData: function(url) {
-			handleViewAction({
+			tableApi.baseAction.handleViewAction({
 				actionType: TableConstants.TABLE_PENDING
 			});
 
@@ -22,13 +22,13 @@ var TableApi = function(tableId) {
 				url: url
 			})
 			.done(function(data) {
-				handleViewAction({
+				tableApi.baseAction.handleViewAction({
 					actionType: TableConstants.TABLE_GOTDATA,
 					data: data
 				});
 			})
 			.fail(function(jqXHR, status, errorThrown) {
-				handleViewAction({
+				tableApi.baseAction.handleViewAction({
 					actionType: TableConstants.TABLE_FAIL_FETCHINGDATA,
 					message: errorThrown,
 					statusCode: status
@@ -39,22 +39,23 @@ var TableApi = function(tableId) {
 			});
 		},
 		simulateGettingData: function() {
-			handleViewAction({
+			tableApi.baseAction.handleViewAction({
 				actionType: TableConstants.TABLE_PENDING
 			});
 			window.setTimeout(function() {
 				var cnt = Math.floor(Math.random() * 20) + 5;
+				//var cnt = 5;
 				var data = _.range(cnt).map(function(v) {
 					return {
 						pernr: Math.floor(Math.random() * 100),
 						cname: Math.floor(Math.random() * 10)
 					};
 				});
-				handleViewAction({
+				tableApi.baseAction.handleViewAction({
 					actionType: TableConstants.TABLE_GOTDATA,
 					data: data
 				});
-			}, 5000);
+			}, 500);
 		}
 	}
 

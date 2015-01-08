@@ -1,0 +1,76 @@
+$fontSize: 16px;
+$borderStyle: 1px solid #8e8e8e;
+div.fill-remaining
+{
+	height: 100%;
+}
+div.vertical-fixed
+{
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+div.rows-container
+{
+	position: absolute;
+	bottom: 0px;
+	top: 0px;
+}
+div.rows-wrapper
+{
+	display: table;
+	table-layout: fixed;
+	box-sizing: border-box;
+	font-size: 0px;
+	border-left: $borderStyle;
+	/*border-bottom: $borderStyle;*/
+	
+	/*border: 1px solid red;*/
+	table{
+		border-collapse: collapse;
+		box-sizing: border-box;		
+		font-size: $fontSize;
+	}
+	
+	
+	.hidden-row
+	{
+		
+		display: table-row;		
+		padding: 0px;
+		margin: 0px;
+		font-size: 10px;
+		.cell
+		{	
+			line-height: 20px;
+			height: 100%;
+			border-right: 1px solid black;
+			padding: 0px;
+			margin: 0px;
+			font-size: 10px;					
+		}
+
+		
+	}
+	.cell
+	{
+		display: table-cell;
+		padding: 0px;
+		overflow: hidden;
+		box-sizing: border-box;
+	}
+	.default-row
+	{
+		display: table-row;		
+		.cell
+		{
+			font-size: $fontSize;			
+			text-align: center;
+			vertical-align: middle;
+			border-right: 1px solid #8e8e8e;
+			line-height: 20px;
+			word-break: break-all;
+			height: 100%;
+			border-bottom: $borderStyle;
+		}		
+	}
+}

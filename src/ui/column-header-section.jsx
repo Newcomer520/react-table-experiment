@@ -4,71 +4,27 @@ var React = require('react')
 
 var ColumnHeaderSection = React.createClass({
 	propTyps: {
-		columns: React.PropTypes.array.isRequired
+		columns: React.PropTypes.array.isRequired,
+		columnsDidUpdate: React.PropTypes.func.isRequired
 	},
-	computedColumns: function() {
-		var columnStructure = {
-			maxNumberOfLayers: 0,
-			defaultCellHeight: 30
-		};
-		var cols = _.clone(this.props.columns);
-		cols = _.isArray(cols) ? 
-			{ columns: cols } : cols;
-		//reset column.
-		cols.columns.forEach(function(col) {
-			col._localNumberOfLayer = undefined;
-		});
-		crColumns(cols);
-		if (_.isUndefined(cols.name)) {
-			cols._localNumberOfLayer--;
-		}
-		columnStructure.maxNumberOfLayers = cols._localNumberOfLayer;
-		cols.setting =  columnStructure;
-		return cols;
-	},	
 	componentWillMount: function() {
-		
+
+	},
+	componentDidMount: function() {
+		this.componentDidUpdate();
+	},
+	componentDidUpdate: function() {
+		var h = this.getDOMNode().offsetHeight;
+		this.props.columnsDidUpdate(parseInt(h));
 	},
 	render: function() {
-		var cols = this.computedColumns();
 		return (
 			<div className="column-area">
-				<ColumnHeader column={cols} setting={cols.setting}  />
+				<ColumnHeader column={this.props.columns} setting={this.props.columns.setting} style={this.props.columns.style}  />
 			</div>
 		);	
 	}
 
 });
 
-function crColumns(pColumn) {
-	//if having children
-	if(_.isUndefined(pColumn._localNumberOfLayer)) {
-		pColumn._localNumberOfLayer = 1;		
-	}
-	if(_.isUndefined(pColumn._idxOfLayer))  {
-		if (_.isUndefined(pColumn.name))
-			pColumn._idxOfLayer = -1;
-		else
-			pColumn._idxOfLayer = 0;
-	}
-		
-
-	var previousParent = pColumn
-	,	parent = pColumn._parent;
-	while (!_.isUndefined(parent)) {
-		if (previousParent._localNumberOfLayer + 1 <= parent._localNumberOfLayer)
-			break;
-		parent._localNumberOfLayer++;
-		previousParent = parent;
-		parent = parent._parent;
-	}
-
-	if (!_.isUndefined(pColumn.columns)) {
-		pColumn.columns.forEach(function(col) {
-			col._parent = pColumn;
-			col._idxOfLayer = pColumn._idxOfLayer + 1;
-			crColumns(col);
-		});	
-	}	
-}
 module.exports = ColumnHeaderSection;

@@ -6,11 +6,46 @@
 		<script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/4.0.5/es5-sham.min.js"></script>
 		<script src="build/console-polyfill.js"></script>
 		<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+		<style>
+		#container {
+        width:100%;
+        background:pink;
+        height: 100%;
+        position: relative;
+    }
+    #autoHeight {
+    	height: 50px;
+        background:blue;
+    }
+    #remainingHeight {
+        position: absolute;
+        top: 50px;
+        bottom: 0px;
+        background:green;
+        overflow:auto;
+    }
+		</style>
 	</head>
 	<body>
+		<div style="height:200px;overflow:auto;width:300px;">
+			<div id="container">
+				<div id="autoHeight"> auto high</div>
+				<div id="remainingHeight">
+					<div>
+						<p>#remainingHeight</p>
+							<p>#remainingHeight</p>
+							<p>#remainingHeight</p>
+							<p>#remainingHeight</p>
+							<p>#remainingHeight</p>	
+					</div>					
+				</div>
+			</div>
+		</div>
 		tb01
 		<div id="tb01"></div>
 		<div id="tb02"></div>
 		<script src="assets/main.js"></script>	
+
 	</body>
 </html>

@@ -13,35 +13,51 @@ var tbStyle = {
 };
 
 var columns = [
-	{ key: 'pernr', name: 'EMP NO'},
-	{ key: 'cname', name: 'CNAME'}
+	{ field: 'pernr', name: 'EMP NO'},
+	{ field: 'cname', name: 'CNAME', style: {width: '100px'	}}
 ]
 ,	columns2 = [
-	{key: 'pernr', name: '工號', style: { width: '200px'} },
-	{key: 'colgrp', name: 'Group', columns: columns}
+	{field: 'pernr', name: '工號', style: { width: '200px'} },
+	{name: 'Group', columns: columns}
 ]
 ,	columns3 = {
-	key: 'na',
 	name: 'big group',
 	columns: columns2
 }
-,	columns5 = [
-	{ name: 'group 01'}, columns3]
-,	options = {
-	method: 'custom',
-	dataProvider: function() {
-
+,	columns5 = {
+		style: {'background-color': 'pink'},
+		columns:[{ name: 'group 01'}, columns3]
+		//columns:[{ name: 'group 01', field:'pernr'}]
 	}
-}
+,	options = {
+		freezeRowsHeight: true,
+		style: {
+			height: '196px',
+			//width: '500px',
+			border: '1px solid red'
+		},		
+		dataProvider: function() {
+		}
+	}
+,	options2 = {
+		freezeRowsHeight: true,		
+		height: '200px',
+		dataProvider: function() {
+		}
+	};
 
 /*React.render(
 	<Table columns={columns} />,
 	document.getElementById('tb01')
 );*/
 React.render(
-	<Table id="table01" columns={columns5} />,
+	<Table id="table01" columns={columns5} options={options} />,
 	document.getElementById('tb02')
 );
+/*React.render(
+	<Table id="table02" columns={columns5} options={options2} />,
+	document.getElementById('tb01')
+);*/
 /*React.render(
 	<Table columns={columns3} />,
 	document.getElementById('tb01')

@@ -2,3 +2,15 @@ body {
 	background: blue;
 	color: black;
 }
+
+.i-table
+{
+	position: relative;
+}
+.pending
+{
+	position: absolute;
+	top: 50%;
+	z-index: 999;
+	left: 50%;
+}
